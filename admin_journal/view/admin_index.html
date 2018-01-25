@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <include file="public/head"/>
+    <title>ThinkCMF管理后台操作日志</title>
+    <meta name="description" content="ThinkCMF管理后台操作日志">
+    <meta name="keywords" content="后台操作日志">
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a>操作日志</a></li>
+    </ul>
+    <form class="well form-inline margin-top-20" method="post" action="">
+        <div class="search_type cc mb10">
+            <div class="mb10">
+                选择日期：
+                <input type="text" class="form-control js-bootstrap-date" name="time" value="{$time}" autocomplete="off">
+                <input type="submit" class="btn btn-primary" value="搜索"/>
+                <if condition="$num neq 0">
+                    共有 {$num} 条相关记录
+                </if>
+                </span>
+            </div>
+        </div>
+    </form>
+    <form method="post" class="js-ajax-form" action="#">
+        <div class="table_list">
+            <table class="table table-hover table-bordered table-list">
+                <thead>
+                <tr>
+                    <th width="50">UserId</th>
+                    <th width="50">Time</th>
+                    <th width="100">IP</th>
+                    <th>Request</th>
+                    <th>Content</th>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="content" item="vo">
+                    <tr>
+                        <td>{$vo.0}</td>
+                        <td>{$vo.1}</td>
+                        <td>{$vo.2}</td>
+                        <td>{$vo.3}</td>
+                        <td style=" WORD-BREAK: break-all; WORD-WRAP: break-word">{:json_encode($vo[4])}</td>
+                    </tr>
+                </foreach>
+                </tbody>
+                <thead>
+                <tr>
+                    <th width="50">UserId</th>
+                    <th width="50">Time</th>
+                    <th width="100">IP</th>
+                    <th>Request</th>
+                    <th>Content</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </form>
+</div>
+<include file="public/scripts"/>
+</body>
+</html>
