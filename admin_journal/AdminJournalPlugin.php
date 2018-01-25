@@ -42,7 +42,7 @@ class AdminJournalPlugin extends Plugin
         $time=time();
         $this->assign("js_debug",APP_DEBUG?"?v=$time":"");
         $array_log = [cmf_get_current_admin_id(),date('H:i:s'),get_client_ip(),request()->url(),request()->param()];
-        $filename=RUNTIME_PATH."journal/";
+        $filename = CMF_ROOT . 'data/journal/';
         !is_dir($filename) && mkdir($filename, 0755, true);
         $file_hwnd=fopen($filename.date('Y-m-d').".log","a+");
         fwrite($file_hwnd,json_encode($array_log)."\r\n");

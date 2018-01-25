@@ -41,7 +41,7 @@ class AdminIndexController extends PluginAdminBaseController
     {
         $data      = $this->request->param();
         $date=isset($data['time']) ? $data['time'] : date('Y-m-d');
-        $filename=RUNTIME_PATH."journal/".$date.".log";
+        $filename = CMF_ROOT . 'data/journal/'.$date.'.log';
         $logs = [];
         if(file_exists_case($filename)){
             fopen($filename,"r");
