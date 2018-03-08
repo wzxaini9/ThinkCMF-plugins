@@ -4,7 +4,7 @@
 // +----------------------------------------------------------------------
 // | Copyright (c) 2013-2018 http://www.thinkcmf.com All rights reserved.
 // +----------------------------------------------------------------------
-// | Author: Powerless <wzxaini9@163.com>
+// | Author: Powerless <wzxaini9@gmail.com>
 // +----------------------------------------------------------------------
 namespace plugins\share_addthis;
 
