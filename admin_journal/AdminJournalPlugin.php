@@ -1,10 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 18/1/23
- * Time: 16:58
- */
+// +----------------------------------------------------------------------
+// | ThinkCMF [ WE CAN DO IT MORE SIMPLE ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2013-2018 http://www.thinkcmf.com All rights reserved.
+// +----------------------------------------------------------------------
+// | Author: Powerless <wzxaini9@gmail.com>
+// +----------------------------------------------------------------------
 
 namespace plugins\admin_journal;
 
