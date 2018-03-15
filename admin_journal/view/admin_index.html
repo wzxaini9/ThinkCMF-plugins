@@ -30,6 +30,7 @@
                 <thead>
                 <tr>
                     <th width="50">UserId</th>
+                    <th width="100">UserName</th>
                     <th width="50">Time</th>
                     <th width="100">IP</th>
                     <th>Request</th>
@@ -43,13 +44,15 @@
                         <td>{$vo.1}</td>
                         <td>{$vo.2}</td>
                         <td>{$vo.3}</td>
-                        <td style=" WORD-BREAK: break-all; WORD-WRAP: break-word">{:json_encode($vo[4])}</td>
+                        <td>{$vo.4}</td>
+                        <td style=" WORD-BREAK: break-all; WORD-WRAP: break-word">{:json_encode($vo[5])}</td>
                     </tr>
                 </foreach>
                 </tbody>
                 <thead>
                 <tr>
                     <th width="50">UserId</th>
+                    <th width="100">UserName</th>
                     <th width="50">Time</th>
                     <th width="100">IP</th>
                     <th>Request</th>
