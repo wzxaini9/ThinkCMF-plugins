@@ -2,10 +2,11 @@
 // +----------------------------------------------------------------------
 // | ThinkCMF [ WE CAN DO IT MORE SIMPLE ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2013-2018 http://www.thinkcmf.com All rights reserved.
+// | Copyright (c) 2013-2018 https://www.wzxaini9.cn/ All rights reserved.
 // +----------------------------------------------------------------------
 // | Author: Powerless <wzxaini9@gmail.com>
 // +----------------------------------------------------------------------
+
 namespace plugins\mouse_attract;
 
 use cmf\lib\Plugin;
@@ -14,14 +15,14 @@ class MouseAttractPlugin extends Plugin
 {
 
     public $info = [
-        'name'=>'MouseAttract',
-        'title'=>'鼠标吸附效果',
-        'description'=>'鼠标吸附效果',
-        'status'=>1,
-        'author'=>'ThinkCMF',
-        'version'=>'1.0',
-        'demo_url'    => 'http://demo.thinkcmf.com',
-        'author_url'  => 'http://www.thinkcmf.com'
+        'name'        =>'MouseAttract',
+        'title'       =>'鼠标吸附效果',
+        'description' =>'鼠标吸附效果',
+        'status'      =>1,
+        'author'      => 'Powerless',
+        'version'     => '1.0.1',
+        'demo_url'    => 'https://www.wzxaini9.cn/',
+        'author_url'  => 'https://www.wzxaini9.cn/'
     ];
 
     // 插件安装

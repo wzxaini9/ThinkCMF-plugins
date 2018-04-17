@@ -2,10 +2,11 @@
 // +----------------------------------------------------------------------
 // | ThinkCMF [ WE CAN DO IT MORE SIMPLE ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2013-2018 http://www.thinkcmf.com All rights reserved.
+// | Copyright (c) 2013-2018 https://www.wzxaini9.cn/ All rights reserved.
 // +----------------------------------------------------------------------
 // | Author: Powerless <wzxaini9@gmail.com>
 // +----------------------------------------------------------------------
+
 namespace plugins\share_addthis;
 
 use cmf\lib\Plugin;
@@ -14,14 +15,14 @@ class ShareAddthisPlugin extends Plugin
 {
 
     public $info = [
-        'name'=>'ShareAddthis',
-        'title'=>'分享效果',
-        'description'=>'页面分享插件',
-        'status'=>1,
-        'author'=>'ThinkCMF',
-        'version'=>'1.0',
-        'demo_url'    => 'http://demo.thinkcmf.com',
-        'author_url'  => 'http://www.thinkcmf.com'
+        'name'        =>'ShareAddthis',
+        'title'       =>'分享效果',
+        'description' =>'页面分享插件',
+        'status'      =>1,
+        'author'      => 'Powerless',
+        'version'     => '1.0.1',
+        'demo_url'    => 'https://www.wzxaini9.cn/',
+        'author_url'  => 'https://www.wzxaini9.cn/'
     ];
 
     // 插件安装
