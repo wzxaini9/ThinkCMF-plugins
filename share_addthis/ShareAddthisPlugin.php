@@ -20,7 +20,7 @@ class ShareAddthisPlugin extends Plugin
         'description' =>'页面分享插件',
         'status'      =>1,
         'author'      => 'Powerless',
-        'version'     => '1.0.1',
+        'version'     => '1.1.0',
         'demo_url'    => 'https://www.wzxaini9.cn/',
         'author_url'  => 'https://www.wzxaini9.cn/'
     ];
