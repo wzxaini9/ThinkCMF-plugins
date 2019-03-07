@@ -20,7 +20,7 @@ class SnowPlugin extends Plugin
         'description' =>'圣诞雪花',
         'status'      =>1,
         'author'      => 'Powerless',
-        'version'     => '1.0.1',
+        'version'     => '1.0.2',
         'demo_url'    => 'https://www.wzxaini9.cn/',
         'author_url'  => 'https://www.wzxaini9.cn/'
     ];
