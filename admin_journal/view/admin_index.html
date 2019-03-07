@@ -45,7 +45,7 @@
                         <td>{$vo.2}</td>
                         <td>{$vo.3}</td>
                         <td>{$vo.4}</td>
-                        <td style=" WORD-BREAK: break-all; WORD-WRAP: break-word">{:json_encode($vo[5])}</td>
+                        <td style=" WORD-BREAK: break-all; WORD-WRAP: break-word">{:json_encode($vo[5],JSON_UNESCAPED_UNICODE)}</td>
                     </tr>
                 </foreach>
                 </tbody>
