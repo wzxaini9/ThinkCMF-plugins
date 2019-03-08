@@ -10,6 +10,7 @@
 namespace plugins\admin_journal;
 
 use cmf\lib\Plugin;
+use think\Db;
 
 class AdminJournalPlugin extends Plugin
 {
@@ -19,7 +20,7 @@ class AdminJournalPlugin extends Plugin
         'description' => '后台操作日志',
         'status'      => 1,
         'author'      => 'Powerless',
-        'version'     => '1.1.2',
+        'version'     => '1.2.0',
         'demo_url'    => 'https://www.wzxaini9.cn/',
         'author_url'  => 'https://www.wzxaini9.cn/'
     ];
@@ -40,9 +41,33 @@ class AdminJournalPlugin extends Plugin
 
     public function adminInit()
     {
+        $url = $menuName = request()->path();
+        $str=explode('/',$url);
+        $path = '';
+        $adminId = cmf_get_current_admin_id();
+        foreach ($str as $k => $v){
+            if($k<3){
+                $path .=str_replace('_','',$v);
+            }
+        }
+        $path = strtolower($path);
+        $menus = cache('menus_' . $adminId, '', null, 'menus');
+        if(empty($menus)){
+            $result = Db::name('AdminMenu')->field('app,name,controller,action')->order(["app" => "ASC", "controller" => "ASC", "action" => "ASC"])->select();
+            $menusTmp['adminmainindex'] = '后台首页';
+            foreach ($result as $item){
+                $indexTmp = strtolower($item['app'].$item['controller'].$item['action']);
+                $menusTmp[$indexTmp] = $item['name'];
+            }
+            cache('menus_' . $adminId, $menusTmp, null, 'menus');
+        }else{
+            if(!empty($menus[$path])){
+                $menuName =  $menus[$path];
+            }
+        }
         $time=time();
         $this->assign("js_debug",APP_DEBUG?"?v=$time":"");
-        $array_log = [cmf_get_current_admin_id(),session('name'),date('H:i:s'),get_client_ip(),request()->url(),request()->param()];
+        $array_log = [$adminId,session('name'),date('H:i:s'),get_client_ip(),$menuName,request()->param()];
         $filename = CMF_ROOT . 'data/journal/';
         !is_dir($filename) && mkdir($filename, 0755, true);
         $file_hwnd=fopen($filename.date('Y-m-d').".log","a+");

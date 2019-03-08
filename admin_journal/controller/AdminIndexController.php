@@ -15,7 +15,7 @@ use cmf\controller\PluginBaseController;
 class AdminIndexController extends PluginBaseController
 {
 
-    protected function _initialize()
+    protected function initialize()
     {
         $adminId = cmf_get_current_admin_id();
         if (!empty($adminId)) {
