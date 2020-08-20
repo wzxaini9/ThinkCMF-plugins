@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+    <include file="public/head"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:cmf_plugin_url('Staff://admin/index')}">管理首页</a></li>
+        <li class="active"><a href="{:cmf_plugin_url('Staff://work/index')}">部门管理</a></li>
+        <li><a href="{:cmf_plugin_url('Staff://work/add')}">添加部门</a></li>
+    </ul>
+    <form class="well form-inline margin-top-20" method="post" action="{:cmf_plugin_url('Staff://work/index')}">
+        单位:
+        <input type="text" class="form-control" name="unit" value="{$param['unit']|default=''}" placeholder="请输入单位">
+        部门:
+        <input type="text" class="form-control" name="department" value="{$param['department']|default=''}" placeholder="请输入部门">
+        职务:
+        <input type="text" class="form-control" name="position" value="{$param['position']|default=''}" placeholder="请输入职务">
+        <input type="submit" class="btn btn-primary js-ajax-submit" value="搜索" />
+        <if condition="$lists['total'] egt 0">
+            共有 {$lists['total']} 条相关记录
+        </if>
+    </form>
+    <div class="table_list">
+        <table class="table table-hover table-bordered table-list">
+            <thead>
+            <tr>
+                <th width="50">ID</th>
+                <th>单位</th>
+                <th>部门</th>
+                <th>职务</th>
+                <th>监督电话</th>
+                <th width="160">开始时间</th>
+                <th width="160">结束时间</th>
+                <th width="100">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+                <foreach name="lists['data']" item="vo">
+                    <tr>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.unit}</td>
+                        <td>{$vo.department}</td>
+                        <td>{$vo.position}</td>
+                        <td>{$vo.phone}</td>
+                        <td>{$vo.start_time}</td>
+                        <td>{$vo.end_time}</td>
+                        <td>
+                            <a class="btn btn-xs btn-primary" href="{:cmf_plugin_url('Staff://work/edit',array('id'=>$vo['id']))}">编辑</a>
+                            <a class="btn btn-xs btn-danger js-ajax-delete" href="{:cmf_plugin_url('Staff://work/status',array('id'=>$vo['id']))}" data-msg="确定要删除吗？">删除</a>
+                        </td>
+                    </tr>
+                </foreach>
+            </tbody>
+            <thead>
+            <tr>
+                <th width="50">ID</th>
+                <th>单位</th>
+                <th>部门</th>
+                <th>职务</th>
+                <th>监督电话</th>
+                <th width="160">创建时间</th>
+                <th width="160">更新时间</th>
+                <th width="100">操作</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="pagination">{$page|default=''}</div>
+</div>
+<include file="public/scripts"/>
+</body>
+</html>
+

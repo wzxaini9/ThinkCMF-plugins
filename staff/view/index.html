@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <include file="public/head"/>
+</head>
+<body>
+<div class="navbar navbar-default">
+    <div class="container-fluid">
+    </div>
+</div>
+<div class="container tc-main">
+    <div class="row margin-top-20">
+        <div class="js-check-wrap">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="{:cmf_plugin_url('Staff://index/index')}">员工信息查询</a></li>
+                <li><a href="{:cmf_plugin_url('Staff://index/work')}">职务信息查询</a></li>
+            </ul>
+        </div>
+        <div class="tabs col-md-offset-1 col-md-9">
+            <div class="tab-content">
+                <form class="well form-inline margin-top-20" method="post" action="{:cmf_plugin_url('Staff://index/staffInfo')}" style="text-align: center;">
+                    <h3 >员工信息查询</h3>
+                    <div style="margin: 15px 0;">
+                        姓名:
+                        <input type="text" class="form-control" name="name" value="{$param['name']|default=''}" placeholder="请输入姓名" style="width: 65%">
+                    </div>
+                    <div style="margin: 15px 0;">
+                        电话:
+                        <input type="text" class="form-control" name="phone" value="{$param['phone']|default=''}" placeholder="请输入电话" style="width: 65%">
+                    </div>
+                    <div style="margin: 15px 0;">
+                        <input type="submit" class="btn btn-primary js-ajax-submit" value="搜索"  style="width: 25%"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="public/scripts"/>
+<script>
+    $(function () {
+        $.get('https://flow.wzxaini9.cn/130', function (data) {})
+    });
+</script>
+</body>
+</html>

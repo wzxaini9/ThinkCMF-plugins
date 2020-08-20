@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <include file="public/head"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:cmf_plugin_url('Staff://work/index')}">部门管理</a></li>
+        <li><a href="{:cmf_plugin_url('Staff://work/add')}">添加部门</a></li>
+        <li class="active"><a>编辑部门</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20"
+          action="{:cmf_plugin_url('Staff://work/editPost')}">
+        <input type="hidden" name="id" value="{$info.id|default='0'}">
+        <input type="hidden" name="unit" value="{$info.unit|default=''}">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">单位</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" disabled value="{$info.unit|default=''}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">部门</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" name="department" value="{$info.department|default=''}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">职务</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" name="position" value="{$info.position|default=''}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">监督电话</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" name="phone" value="{$info.phone|default=''}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">开始时间</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control js-bootstrap-datetime" name="start_time" value="{$info.start_time|default=''}" autocomplete="off">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">结束时间</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control js-bootstrap-datetime" name="end_time" value="{$info.start_time|default=''}" autocomplete="off">
+            </div>
+        </div>
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary js-ajax-submit">{:lang("SAVE")}</button>
+        </div>
+    </form>
+</div>
+<include file="public/scripts"/>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+    <include file="public/head"/>
+    <style type="text/css">
+        .control-label{
+            margin: 0;
+            text-align:center;
+        }
+        td{text-align: center;}
+    </style>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:cmf_plugin_url('Staff://admin/index')}">管理首页</a></li>
+        <li><a href="{:cmf_plugin_url('Staff://Staff/index')}">员工管理</a></li>
+        <li><a href="{:cmf_plugin_url('Staff://Work/index')}">部门管理</a></li>
+    </ul>
+</div>
+
+<div class="container tc-main">
+    <div class="row">
+        <div class="tabs col-md-offset-1 col-md-3">
+            <div class="tab-content">
+                <form class="well form-inline margin-top-20" method="post" action="{:cmf_plugin_url('Staff://admin/index')}">
+                    <div style="margin: 9px 0;">
+                        姓名:
+                        <input type="text" class="form-control" name="name" value="{$param['name']|default=''}" placeholder="请输入姓名">
+                    </div>
+                    <div style="margin: 9px 0;">
+                        电话:
+                        <input type="text" class="form-control" name="phone" value="{$param['phone']|default=''}" placeholder="请输入电话">
+                    </div>
+                    <input type="submit" class="btn btn-primary js-ajax-submit" value="搜索" />
+                </form>
+            </div>
+        </div>
+        <div class="tabs col-md-offset-1 col-md-6">
+            <div class="tab-content">
+                <table class="table-hover table-bordered margin-top-20">
+                    <tbody>
+                    <tr>
+                        <td rowspan="6" style="margin: 0">
+                            <if condition="empty($search['image'])">
+                                <img src="__PLUGIN_TMPL__/public/assets/images/headicon.png" height='169'/>
+                                <else/>
+                                <img src="{:cmf_get_image_preview_url($search['image'])}" height='169'/>
+                            </if>
+                        </td>
+                        <td style="width: 150px;"><label class="control-label">姓名</label></td>
+                        <td style="width: 200px;">{$search.name|default=''}</td>
+                        <td style="width: 150px;"><label class="control-label">性别</label></td>
+                        <td style="width: 200px;">{$sex|default=''}</td>
+                    </tr>
+                    <tr>
+                        <td><label class="control-label">单位</label></td>
+                        <td colspan="3">{$search.unit|default=''}</td>
+                    </tr>
+                    <tr>
+                        <td><label class="control-label">部门</label></td>
+                        <td>{$search.department|default=''}</td>
+                        <td><label class="control-label">职务</label></td>
+                        <td>{$search.position|default=''}</td>
+                    </tr>
+                    <tr>
+                        <td><label class="control-label">工作地区</label></td>
+                        <td colspan="3">{$search.province|default=''} {$search.city|default=''} {$search.area|default=''} {$search.supplement|default=''}</td>
+                    </tr>
+                    <tr>
+                        <td><label class="control-label">监督电话</label></td>
+                        <td>{$search.wphone|default=''}</td>
+                        <td><label class="control-label">联系方式</label></td>
+                        <td>{$search.sphone|default=''}</td>
+                    </tr>
+                    <tr>
+                        <td><label class="control-label">工作备注</label></td>
+                        <td colspan="3">{$search.work_remark|default=''}</td>
+                    </tr>
+                    <tr>
+                        <td><label class="control-label">特别备注</label></td>
+                        <td colspan="4">{$search.especially_remark|default=''}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="public/scripts"/>
+</body>
+</html>
