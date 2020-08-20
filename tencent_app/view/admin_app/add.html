@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+    <include file="public/head"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:cmf_plugin_url('TencentApp://AdminIndex/index')}">小程序管理</a></li>
+        <li class="active"><a href="{:cmf_plugin_url('TencentApp://AdminApp/add')}">添加小程序</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20"
+          action="{:cmf_plugin_url('TencentApp://AdminApp/addPost')}">
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">名称</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" name="name" value="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">类型</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" name="app_type" value="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">App ID</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" name="app_id" value="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">App Secret</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" name="app_secret" value="">
+            </div>
+        </div>
+
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary js-ajax-submit">{:lang("SAVE")}</button>
+        </div>
+    </form>
+</div>
+<include file="public/scripts"/>
+</body>
+</html>
