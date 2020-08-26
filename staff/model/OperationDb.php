@@ -33,7 +33,7 @@ class OperationDb
               PRIMARY KEY (`id`),
               KEY `idx_wid` (`work_id`),
               KEY `idx_name` (`name`,`phone`)
-            ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;";
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
         $work = "            
             CREATE TABLE IF NOT EXISTS `work_info` (
               `id` int(11) NOT NULL AUTO_INCREMENT,
