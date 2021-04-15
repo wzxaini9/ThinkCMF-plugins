@@ -19,7 +19,7 @@ class TencentAppPlugin extends Plugin
         'description' => '腾讯小程序管理工具',
         'status'      => 1,
         'author'      => 'Powerless',
-        'version'     => '1.0',
+        'version'     => '1.0.0',
         'demo_url'    => 'https://wzxaini9.cn',
         'author_url'  => 'https://wzxaini9.cn'
     ];
