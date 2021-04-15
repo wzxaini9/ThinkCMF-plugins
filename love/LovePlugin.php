@@ -1,11 +1,9 @@
 <?php
-// +----------------------------------------------------------------------
-// | ThinkCMF [ WE CAN DO IT MORE SIMPLE ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013-2018 https://www.wzxaini9.cn/ All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: Powerless <wzxaini9@gmail.com>
-// +----------------------------------------------------------------------
+/**
+ * User: Powerless
+ * Date: 2021/4/15
+ * Blog: https://wzxaini9.cn
+ */
 
 namespace plugins\love;
 
@@ -20,7 +18,7 @@ class LovePlugin extends Plugin
         'description' =>'点击桃心',
         'status'      =>1,
         'author'      => 'Powerless',
-        'version'     => '1.0.0',
+        'version'     => '1.1.0',
         'demo_url'    => 'https://www.wzxaini9.cn/',
         'author_url'  => 'https://www.wzxaini9.cn/'
     ];
