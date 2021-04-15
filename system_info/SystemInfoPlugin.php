@@ -19,7 +19,9 @@ class SystemInfoPlugin extends Plugin
         'description' => '系统信息',
         'status'      => 1,
         'author'      => 'Powerless',
-        'version'     => '2.0.0'
+        'version'     => '2.0.0',
+        'demo_url'    => 'https://www.wzxaini9.cn/',
+        'author_url'  => 'https://www.wzxaini9.cn/'
     ];
 
     public $hasAdmin = 0;//插件是否有后台管理界面

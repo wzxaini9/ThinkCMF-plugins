@@ -18,7 +18,7 @@ class AdminJournalPlugin extends Plugin
         'description' => '后台操作日志',
         'status'      => 1,
         'author'      => 'Powerless',
-        'version'     => '1.3.0',
+        'version'     => '2.0.0',
         'demo_url'    => 'https://www.wzxaini9.cn/',
         'author_url'  => 'https://www.wzxaini9.cn/'
     ];

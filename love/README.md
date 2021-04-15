@@ -1,5 +1,6 @@
 # ThinkCMF-love
-###ThinkCMF-前台页面鼠标特效插件
+ - https://wzxaini9.cn
+###ThinkCMF-前台页面鼠标点击特效插件
  - https://www.thinkcmf.com/appstore/plugin/141.html
  - 解压至项目public\plugins\目录下即可。
 

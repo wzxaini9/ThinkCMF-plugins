@@ -1,7 +1,6 @@
-# ThinkCMF-mouse_attract
+# ThinkCMF-system_info
  - https://wzxaini9.cn
-###ThinkCMF-前台页面鼠标吸附效果插件
- - https://www.thinkcmf.com/appstore/plugin/141.html
+###ThinkCMF-后台首页系统信息
  - 解压至项目public\plugins\目录下即可。
 
 ####1.0.0说明 

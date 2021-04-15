@@ -17,7 +17,7 @@
     var time = 5;
     function timeDown(){
         document.getElementsByTagName('i')[0].innerHTML = time;
-        if(--time==0){
+        if(--time <= 0){
             window.location.href = '/';
         }
         setTimeout(timeDown,1000);

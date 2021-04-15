@@ -1,7 +1,6 @@
-# ThinkCMF-mouse_attract
+# ThinkCMF-tencent_app
  - https://wzxaini9.cn
-###ThinkCMF-前台页面鼠标吸附效果插件
- - https://www.thinkcmf.com/appstore/plugin/141.html
+###ThinkCMF-后台小程序管理插件
  - 解压至项目public\plugins\目录下即可。
 
 ####1.0.0说明 

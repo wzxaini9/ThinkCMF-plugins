@@ -1,7 +1,7 @@
-# ThinkCMF-mouse_attract
+﻿# ThinkCMF-snow
  - https://wzxaini9.cn
-###ThinkCMF-前台页面鼠标吸附效果插件
- - https://www.thinkcmf.com/appstore/plugin/141.html
+###ThinkCMF-前端页面下雪插件
+ - https://www.thinkcmf.com/appstore/plugin/140.html
  - 解压至项目public\plugins\目录下即可。
 
 ####1.0.0说明 
