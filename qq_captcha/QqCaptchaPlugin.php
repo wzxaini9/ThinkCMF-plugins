@@ -18,7 +18,7 @@ class QqCaptchaPlugin extends Plugin
         'description' => '后台登录页验证码修改为腾讯防水墙',
         'status'      => 1,
         'author'      => 'Powerless',
-        'version'     => '1.1.0'
+        'version'     => '1.0.0'
     ];
 
     public $hasAdmin = 0;//插件是否有后台管理界面
