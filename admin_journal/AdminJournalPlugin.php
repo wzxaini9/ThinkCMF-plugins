@@ -1,11 +1,9 @@
 <?php
-// +----------------------------------------------------------------------
-// | ThinkCMF [ WE CAN DO IT MORE SIMPLE ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013-21021 https://www.wzxaini9.cn/ All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: Powerless <wzxaini9@gmail.com>
-// +----------------------------------------------------------------------
+/**
+ * User: Powerless
+ * Date: 2021/4/15
+ * Blog: https://wzxaini9.cn
+ */
 
 namespace plugins\admin_journal;
 
