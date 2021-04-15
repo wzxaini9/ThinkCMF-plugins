@@ -1,11 +1,9 @@
 <?php
-// +----------------------------------------------------------------------
-// | ThinkCMF [ WE CAN DO IT MORE SIMPLE ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013-21021 https://www.wzxaini9.cn/ All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: Powerless <wzxaini9@gmail.com>
-// +----------------------------------------------------------------------
+/**
+ * User: Powerless
+ * Date: 2021/4/15
+ * Blog: https://wzxaini9.cn
+ */
 
 namespace plugins\qq_captcha;
 
@@ -20,7 +18,7 @@ class QqCaptchaPlugin extends Plugin
         'description' => '后台登录页验证码修改为腾讯防水墙',
         'status'      => 1,
         'author'      => 'Powerless',
-        'version'     => '1.0.0'
+        'version'     => '1.1.0'
     ];
 
     public $hasAdmin = 0;//插件是否有后台管理界面
