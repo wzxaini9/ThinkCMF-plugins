@@ -9,20 +9,21 @@
 
 namespace plugins\admin_journal\controller;
 
-use cmf\controller\PluginBaseController;
+use cmf\controller\PluginAdminBaseController;
 
 
-class AdminIndexController extends PluginBaseController
+class AdminIndexController extends PluginAdminBaseController
 {
 
     protected function initialize()
     {
-        $adminId = cmf_get_current_admin_id();
+        parent::initialize();
+        $adminId = cmf_get_current_admin_id(); //获取后台管理员id，可判断是否登录
         if (!empty($adminId)) {
             if (!$this->checkAccess($adminId)) {
                 $this->error("您没有访问权限！");
             }
-            $this->assign("admin_id", $adminId);
+            $this->assign('admin_id', $adminId);
         } else {
             if ($this->request->isAjax()) {
                 $this->error("您还没有登录！", url("admin/Public/login"));
@@ -48,27 +49,27 @@ class AdminIndexController extends PluginBaseController
      */
     public function index()
     {
-        $data      = $this->request->param();
-        $date=isset($data['time']) ? $data['time'] : date('Y-m-d');
-        $filename = CMF_ROOT . 'data/journal/'.$date.'.log';
+        $data = $this->request->param();
+        $date = isset($data['time']) ? $data['time'] : date('Y-m-d');
+        $filename = CMF_ROOT . 'data/journal/' . $date . '.log';
         $logs = [];
-        if(file_exists_case($filename)){
-            fopen($filename,"r");
+        if (file_exists_case($filename)) {
+            fopen($filename, "r");
             $num = count(file($filename));
-            $file_hwnd=fopen($filename,"r");
-            $content = explode("\r\n",fread($file_hwnd, filesize($filename)));  // 读去文件全部内容
+            $file_hwnd = fopen($filename, "r");
+            $content = explode("\r\n", fread($file_hwnd, filesize($filename)));  // 读去文件全部内容
             fclose($file_hwnd);
-            foreach ($content as $k=>$v){
-                if($v){
-                    $logs[$k] = json_decode( $v,true);
+            foreach ($content as $k => $v) {
+                if ($v) {
+                    $logs[$k] = json_decode($v, true);
                 }
             }
-        }else{
+        } else {
             $num = 0;
         }
-        $this->assign("content",array_reverse($logs,true));
+        $this->assign("content", array_reverse($logs, true));
         $this->assign('time', $date);
-        $this->assign("num",$num);
+        $this->assign("num", $num);
         return $this->fetch('/admin_index');
     }
 
@@ -87,7 +88,7 @@ class AdminIndexController extends PluginBaseController
         $pluginName = $this->request->param('_plugin');
         $controller = $this->request->param('_controller');
         $controller = cmf_parse_name($controller, 1);
-        $action     = $this->request->param('_action');
+        $action = $this->request->param('_action');
 
         return cmf_auth_check($userId, "plugin/{$pluginName}/$controller/$action");
     }
