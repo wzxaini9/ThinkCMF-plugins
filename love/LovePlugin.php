@@ -13,12 +13,12 @@ class LovePlugin extends Plugin
 {
 
     public $info = [
-        'name'        => 'Love',
-        'title'       => '点击桃心',
-        'description' => '点击桃心',
-        'status'      => 1,
+        'name'        =>'Love',
+        'title'       =>'点击桃心',
+        'description' =>'点击桃心',
+        'status'      =>1,
         'author'      => 'Powerless',
-        'version'     => '1.1.0',
+        'version'     => '2.0.0',
         'demo_url'    => 'https://www.wzxaini9.cn/',
         'author_url'  => 'https://www.wzxaini9.cn/'
     ];
