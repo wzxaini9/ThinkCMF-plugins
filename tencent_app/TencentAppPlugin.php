@@ -1,8 +1,7 @@
 <?php
-
 /**
  * User: Powerless
- * Date: 2019/11/17
+ * Date: 2021/4/15
  * Blog: https://wzxaini9.cn
  */
 
@@ -19,7 +18,7 @@ class TencentAppPlugin extends Plugin
         'description' => '腾讯小程序管理工具',
         'status'      => 1,
         'author'      => 'Powerless',
-        'version'     => '1.0.0',
+        'version'     => '1.1.0',
         'demo_url'    => 'https://wzxaini9.cn',
         'author_url'  => 'https://wzxaini9.cn'
     ];
