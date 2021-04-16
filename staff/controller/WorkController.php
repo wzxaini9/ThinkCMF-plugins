@@ -33,10 +33,16 @@ class WorkController extends PluginAdminBaseController
     {
         $param = $this->request->param();
         $where['status'] = 1;
-        if(!empty($param['unit'])) {$where['unit'] = $param['unit'];}
-        if(!empty($param['department'])) {$where['department'] = $param['department'];}
-        if(!empty($param['position'])) {$where['position'] = $param['position'];}
-        list($lists,$page) = $this->model->lists($param,$where,$this->size);
+        if (!empty($param['unit'])) {
+            $where['unit'] = $param['unit'];
+        }
+        if (!empty($param['department'])) {
+            $where['department'] = $param['department'];
+        }
+        if (!empty($param['position'])) {
+            $where['position'] = $param['position'];
+        }
+        list($lists, $page) = $this->model->lists($param, $where, $this->size);
         $this->assign('lists', $lists);
         $this->assign('page', $page);
         $this->assign('param', $param);
@@ -57,13 +63,13 @@ class WorkController extends PluginAdminBaseController
             $where['position'] = $param['position'];
             $where['status'] = 1;
             $lists = $this->model->selectLists($where);
-            if(!count($lists)){
+            if (!count($lists)) {
                 $id = $this->model->add($param);
                 $this->success('添加成功！', cmf_plugin_url('Staff://work/edit', ['id' => $id]));
-            }else{
+            } else {
                 $this->error('单位、部门、职务不可重复');
             }
-        }else{
+        } else {
             $this->error($this->validate->getError());
         }
     }
@@ -80,19 +86,19 @@ class WorkController extends PluginAdminBaseController
     {
         $param = $this->request->param();
         if ($this->validate->scene('edit')->check($param)) {
-            $where['id'] = ['neq',$param['id']];
-            $where['unit'] = $param['unit'];
-            $where['department'] = $param['department'];
-            $where['position'] = $param['position'];
-            $where['status'] = 1;
+            $where[] = ['id', '<>', $param['id']];
+            $where[] = ['unit', '=', $param['unit']];
+            $where[] = ['department', '=', $param['department']];
+            $where[] = ['position', '=', $param['position']];
+            $where[] = ['status', '=', 1];
             $lists = $this->model->selectLists($where);
-            if(!count($lists)){
+            if (!count($lists)) {
                 $this->model->edit($param);
                 $this->success('更新成功！', cmf_plugin_url('Staff://work/index'));
-            }else{
+            } else {
                 $this->error('单位、部门、职务不可重复');
             }
-        }else{
+        } else {
             $this->error($this->validate->getError());
         }
     }
@@ -101,9 +107,9 @@ class WorkController extends PluginAdminBaseController
     {
         $param = $this->request->param();
         if ($this->validate->scene('status')->check($param)) {
-            $this->model->status($param['id'],0);
+            $this->model->status($param['id'], 0);
             $this->success('删除成功！', cmf_plugin_url('Staff://work/index'));
-        }else{
+        } else {
             $this->error($this->validate->getError());
         }
     }

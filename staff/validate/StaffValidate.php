@@ -41,13 +41,13 @@ class StaffValidate extends Validate
         'especially_remark' => '特别备注',
     ];
     protected $message = [
-        'phone.between'     => "请输入真实手机号",
-        'sex.between'       => "请选择正确的性别",
-        'work_id.gt'        => '请选择工作组',
+        'phone.between' => "请输入真实手机号",
+        'sex.between'   => "请选择正确的性别",
+        'work_id.gt'    => '请选择工作组',
     ];
     protected $scene = [
-        'add'               => ['name','sex','phone','work_id','province','city','area','supplement','work_remark','especially_remark'],
-        'edit'              => ['id','name','sex','phone','work_id','province','city','area','supplement','work_remark','especially_remark'],
-        'status'            => ['id'],
+        'add'    => ['name', 'sex', 'phone', 'work_id', 'province', 'city', 'area', 'supplement', 'work_remark', 'especially_remark'],
+        'edit'   => ['id', 'name', 'sex', 'phone', 'work_id', 'province', 'city', 'area', 'supplement', 'work_remark', 'especially_remark'],
+        'status' => ['id'],
     ];
 }

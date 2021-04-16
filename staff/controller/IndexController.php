@@ -15,7 +15,7 @@ class IndexController extends PluginBaseController
 {
     public $model;
     public $validate;
-    public $sexs = ["0"=>"保密","1"=>"男","2"=>"女"];
+    public $sexs = ["0" => "保密", "1" => "男", "2" => "女"];
 
     public function __construct()
     {
@@ -38,13 +38,13 @@ class IndexController extends PluginBaseController
                 $where['si.name'] = $param['name'];
                 $where['si.phone'] = $param['phone'];
                 $search = $this->model->search($where);
-                if(!$search){
+                if (!$search) {
                     $this->error('未查询到相关人员');
                 }
                 $this->assign('sex', $this->sexs[$search['sex']]);
                 $this->assign('search', $search);
                 $this->assign('param', $param);
-            }else{
+            } else {
                 $this->error($this->validate->getError());
             }
         }
@@ -65,12 +65,12 @@ class IndexController extends PluginBaseController
                 $where['si.name'] = $param['name'];
                 $where['wi.position'] = $param['position'];
                 $search = $this->model->search($where);
-                if(!$search){
+                if (!$search) {
                     $this->error('未查询到相关人员');
                 }
                 $this->assign('search', $search);
                 $this->assign('param', $param);
-            }else{
+            } else {
                 $this->error($this->validate->getError());
             }
         }
