@@ -13,10 +13,10 @@ class SnowPlugin extends Plugin
 {
 
     public $info = [
-        'name'        =>'Snow',
-        'title'       =>'圣诞雪花',
-        'description' =>'圣诞雪花',
-        'status'      =>1,
+        'name'        => 'Snow',
+        'title'       => '圣诞雪花',
+        'description' => '圣诞雪花',
+        'status'      => 1,
         'author'      => 'Powerless',
         'version'     => '2.0.0',
         'demo_url'    => 'https://www.wzxaini9.cn/',

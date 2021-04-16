@@ -13,10 +13,10 @@ class MouseAttractPlugin extends Plugin
 {
 
     public $info = [
-        'name'        =>'MouseAttract',
-        'title'       =>'鼠标吸附效果',
-        'description' =>'鼠标吸附效果',
-        'status'      =>1,
+        'name'        => 'MouseAttract',
+        'title'       => '鼠标吸附效果',
+        'description' => '鼠标吸附效果',
+        'status'      => 1,
         'author'      => 'Powerless',
         'version'     => '2.0.0',
         'demo_url'    => 'https://www.wzxaini9.cn/',
