@@ -38,9 +38,9 @@ class Web404Plugin extends Plugin
         // 动态修改异常页面路径
         cmf_set_dynamic_config([
             'app' => [
-                'exception_tmpl' => CMF_ROOT . 'vendor/thinkphp/tpl/think_exception.tpl'
+                'exception_tmpl' => CMF_ROOT . 'vendor/topthink/framework/src/tpl/think_exception.tpl'
             ]
         ]);
-		return true;//卸载成功返回true，失败false
+        return true;//卸载成功返回true，失败false
     }
 }
