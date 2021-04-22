@@ -37,7 +37,8 @@ class AdminJournalPlugin extends Plugin
 
     public function adminInit()
     {
-        $url = $menuName = request()->url();
+        $request = request();
+        $url = $menuName = $request->url();
         $url = str_replace('.html', '', $url);
         $url = str_replace('_', '', $url);
         $url = substr($url, '1');
@@ -62,13 +63,15 @@ class AdminJournalPlugin extends Plugin
             cache('menus_' . $adminId, $menusTmp, null, 'menus');
         } else {
             if (!empty($menus[$path])) {
-                $method = request()->method();
+                $method = $request->method();
                 $menuName = "[$method]" . $menus[$path];
             }
         }
         $time = time();
         $this->assign("js_debug", APP_DEBUG ? "?v=$time" : "");
-        $array_log = [$adminId, session('name'), date('H:i:s'), get_client_ip(), $menuName, request()->param()];
+        $data = $request->request();
+        unset($data['s']);
+        $array_log = [$adminId, session('name'), date('H:i:s'), get_client_ip(), $menuName, $data];
         $filename = CMF_ROOT . 'data/journal/';
         !is_dir($filename) && mkdir($filename, 0755, true);
         $file_hwnd = fopen($filename . date('Y-m-d') . ".log", "a+");
