@@ -23,7 +23,6 @@ class AdminJournalPlugin extends Plugin
         'author_url'  => 'https://www.wzxaini9.cn/'
     ];
 
-
     // 插件安装
     public function install()
     {
@@ -39,15 +38,19 @@ class AdminJournalPlugin extends Plugin
     public function adminInit()
     {
         $url = $menuName = request()->url();
-        $str = explode('/', $url);
+        $url = str_replace('.html', '', $url);
+        $url = str_replace('_', '', $url);
+        $url = substr($url, '1');
+        $url = strtolower($url);
+        $urlArr = explode('/', $url);
         $path = '';
-        $adminId = cmf_get_current_admin_id();
-        foreach ($str as $k => $v) {
-            if ($k < 3) {
-                $path .= str_replace('_', '', $v);
+        foreach ($urlArr as $k => $v) {
+            if (!$k && $v == 'plugin') {    //菜单表中钩子插件路径会有斜杠/
+                $v .= '/';
             }
+            $path .= $v;
         }
-        $path = strtolower($path);
+        $adminId = cmf_get_current_admin_id();
         $menus = cache('menus_' . $adminId, '', null, 'menus');
         if (empty($menus)) {
             $result = AdminMenuModel::field('app,name,controller,action')->order(["app" => "ASC", "controller" => "ASC", "action" => "ASC"])->select();
@@ -59,7 +62,8 @@ class AdminJournalPlugin extends Plugin
             cache('menus_' . $adminId, $menusTmp, null, 'menus');
         } else {
             if (!empty($menus[$path])) {
-                $menuName = $menus[$path];
+                $method = request()->method();
+                $menuName = "[$method]" . $menus[$path];
             }
         }
         $time = time();
