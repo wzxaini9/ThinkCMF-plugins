@@ -38,7 +38,8 @@ class AdminJournalPlugin extends Plugin
     public function adminInit()
     {
         $request = request();
-        $url = $menuName = $request->url();
+        $url = $request->url();
+        $menuName = $url = parse_url($url, PHP_URL_PATH);
         $url = str_replace('.html', '', $url);
         $url = str_replace('_', '', $url);
         $url = substr($url, '1');
@@ -46,9 +47,7 @@ class AdminJournalPlugin extends Plugin
         $urlArr = explode('/', $url);
         $path = '';
         foreach ($urlArr as $k => $v) {
-            if (!$k && $v == 'plugin') {    //菜单表中钩子插件路径会有斜杠/
-                $v .= '/';
-            }
+            if (!$k && $v == 'plugin') $v .= '/';    //菜单表中钩子插件路径会有斜杠/
             $path .= $v;
         }
         $adminId = cmf_get_current_admin_id();
