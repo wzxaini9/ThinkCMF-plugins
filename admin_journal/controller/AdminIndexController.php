@@ -13,25 +13,6 @@ use cmf\controller\PluginAdminBaseController;
 class AdminIndexController extends PluginAdminBaseController
 {
 
-    protected function initialize()
-    {
-        parent::initialize();
-        $adminId = cmf_get_current_admin_id(); //获取后台管理员id，可判断是否登录
-        if (!empty($adminId)) {
-            if (!$this->checkAccess($adminId)) {
-                $this->error("您没有访问权限！");
-            }
-            $this->assign('admin_id', $adminId);
-        } else {
-            if ($this->request->isAjax()) {
-                $this->error("您还没有登录！", url("admin/Public/login"));
-            } else {
-                header("Location:" . url("admin/Public/login"));
-                exit();
-            }
-        }
-    }
-
     /**
      * 操作日志
      * @adminMenu(

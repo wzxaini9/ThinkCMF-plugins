@@ -11,17 +11,6 @@ use cmf\controller\PluginAdminBaseController;
 
 class AdminIndexController extends PluginAdminBaseController
 {
-
-    public function initialize()
-    {
-        $adminId = cmf_get_current_admin_id();
-        if (!empty($adminId)) {
-            $this->assign("admin_id", $adminId);
-        } else {
-            $this->error('未登录');
-        }
-    }
-
     /**
      * 小程序管理
      * @adminMenu(
