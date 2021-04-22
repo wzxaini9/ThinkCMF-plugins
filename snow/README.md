@@ -1,5 +1,4 @@
 ﻿# ThinkCMF-snow
- - https://wzxaini9.cn
 ###ThinkCMF-前端页面下雪插件
  - https://www.thinkcmf.com/appstore/plugin/140.html
  - 解压至项目public\plugins\目录下即可。

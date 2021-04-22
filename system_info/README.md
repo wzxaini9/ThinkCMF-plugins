@@ -1,5 +1,4 @@
 # ThinkCMF-system_info
- - https://wzxaini9.cn
 ###ThinkCMF-后台首页系统信息
  - 解压至项目public\plugins\目录下即可。
 

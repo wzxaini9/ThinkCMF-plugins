@@ -1,5 +1,4 @@
 # ThinkCMF-share_addthis
- - https://wzxaini9.cn
 ###ThinkCMF-前台页面分享插件
  - https://www.thinkcmf.com/appstore/plugin/142.html
  - 解压至项目public\plugins\目录下即可。

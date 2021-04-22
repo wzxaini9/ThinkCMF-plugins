@@ -1,5 +1,4 @@
 # ThinkCMF-admin_journal
- - https://wzxaini9.cn
 ###ThinkCMF-管理后台操作日志插件
  - https://www.thinkcmf.com/appstore/plugin/143.html
  - 解压至项目public\plugins\目录下即可。

@@ -1,5 +1,4 @@
 # ThinkCMF-tencent_app
- - https://wzxaini9.cn
 ###ThinkCMF-后台小程序管理插件
  - 解压至项目public\plugins\目录下即可。
 

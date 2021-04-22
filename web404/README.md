@@ -1,5 +1,4 @@
 # ThinkCMF-web404
- - https://wzxaini9.cn
 ###ThinkCMF-系统错误404页面
  - 解压至项目public\plugins\目录下即可。
 
