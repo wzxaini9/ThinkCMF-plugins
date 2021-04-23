@@ -33,7 +33,7 @@
 ---
 ## 关于作者
 #### 昵称:[Powerless](https://wzxaini9.cn)
- * ThinkCMF框架核心贡献者、资深PHP工程师。
+ * ThinkCMF框架核心贡献者、优秀的PHP开发工程师。
 
 ![微信小程序](https://cdn.wzxaini9.cn/themes/wzxaini9/public/assets/code/wxxcx.jpg "微信小程序")
 ![QQ小程序](https://cdn.wzxaini9.cn/themes/wzxaini9/public/assets/code/qqxcx.png "QQ小程序")
