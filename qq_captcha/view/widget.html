@@ -8,19 +8,14 @@
     <meta name="robots" content="noindex,nofollow">
     <link rel="icon" href="__ADMIN_TMPL__/public/assets/images/favicon.png" type="image/png">
     <link rel="shortcut icon" href="__ADMIN_TMPL__/public/assets/images/favicon.ico" type="image/x-icon">
-    <!-- HTML5 shim for IE8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <![endif]-->
     <link href="__ADMIN_TMPL__/public/assets/themes/{:cmf_get_admin_style()}/bootstrap.min.css" rel="stylesheet">
     <link href="__STATIC__/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="__ADMIN_TMPL__/public/assets/themes/{:cmf_get_admin_style()}/login.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
     <style>
         body {
-            background: url({$data['url']})center fixed no-repeat;
+            background: url({$data['url']})center no-repeat;
+            background-size:cover;
+            background-attachment:fixed;
         }
     </style>
     <script type="text/javascript">
