@@ -22,6 +22,7 @@ class TencentAppPlugin extends Plugin
         'demo_url'    => 'https://www.wzxaini9.cn/',
         'author_url'  => 'https://www.wzxaini9.cn/'
     ];
+    public $hasAdmin = 1;//插件是否有后台管理界面
 
     // 插件安装
     public function install()
