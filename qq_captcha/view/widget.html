@@ -76,30 +76,12 @@
 <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
 <script>
     //判断当前浏览类型
-    function BrowserType()
-    {
-        var text = '💰';
-        var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
-        var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
-        var isIE = userAgent.indexOf("Trident") > -1; //判断是否IE浏览器
-        var isEdge = userAgent.indexOf("Edge") > -1; //判断是否Edge浏览器
-        var isFF = userAgent.indexOf("Firefox") > -1; //判断是否Firefox浏览器
-        var isSafari = userAgent.indexOf("Safari") > -1; //判断是否Safari浏览器
-        var isChrome = userAgent.indexOf("Chrome") > -1; //判断Chrome浏览器
-        if (isIE){ text = '💧';}
-        if (isFF) { text = '🍗';}
-        if (isOpera) { text = '🍔';}
-        if (isSafari) { text = '💩';}
-        if (isChrome) { text = '❄';}
-        if (isEdge) { text = '💕';}
-        return text;
-    }
 
     $(function(){
         $(document).snowfall('clear');
-        $(document).snowfall({round:true,minSize:1,maxSize:32,text:BrowserType(),flakeColor:'',flakeCount:64});
+        const style= '&#1005' + ((Math.floor(Math.random() * 9))+1);
+        $(document).snowfall({round:true,minSize:1,maxSize:32,text:style,flakeColor:'',flakeCount:64});
     });
-
     (function () {
         document.getElementById('input_username').focus();
     })();
