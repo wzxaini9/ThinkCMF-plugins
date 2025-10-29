@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <include file="public/head"/>
+    <include file="public@head"/>
 </head>
 <body>
 <div class="wrap js-check-wrap">
@@ -34,7 +34,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">App Secret</label>
             <div class="col-md-6 col-sm-10">
-                <input type="text" class="form-control" name="app_secret" value="{$app.app_secret|default=''}">
+                <input type="password" class="form-control" name="app_secret" value="{$app.app_secret|default=''}">
             </div>
         </div>
 
@@ -43,6 +43,6 @@
         </div>
     </form>
 </div>
-<include file="public/scripts"/>
+<include file="public@scripts"/>
 </body>
 </html>

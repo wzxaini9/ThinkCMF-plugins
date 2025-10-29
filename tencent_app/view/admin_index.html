@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <include file="public/head"/>
+    <include file="public@head"/>
 </head>
 <body>
 <div class="wrap js-check-wrap">
@@ -14,11 +14,11 @@
             <table width="100%" class="table table-hover">
                 <thead>
                 <tr>
-                    <th>名称</th>
+                    <th width="200">{:lang('NAME')}</th>
                     <th>App ID</th>
                     <th>App Secret</th>
-                    <th>类型</th>
-                    <th width="120">操作</th>
+                    <th>{:lang('TYPE')}</th>
+                    <th width="110">{:lang('ACTIONS')}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,11 +26,12 @@
                     <tr>
                         <td>{$vo.name|default=''}</td>
                         <td>{$vo.app_id|default=''}</td>
-                        <td>{$vo.app_secret|default=''}</td>
+                        <td>{:substr($vo.app_secret, 0, 9).'******'|''}</td>
                         <td>{$vo.app_type|default=''}</td>
                         <td>
-                            <a href="{:cmf_plugin_url('TencentApp://AdminApp/edit',['id'=>$vo.app_id])}">编辑</a>
-                            <a  class="js-ajax-delete" href="{:cmf_plugin_url('TencentApp://AdminApp/delete',['id'=>$vo.app_id])}">删除</a>
+                            <a class="btn btn-xs btn-primary" href="{:cmf_plugin_url('TencentApp://AdminApp/edit',['id'=>$vo.app_id])}">{:lang('EDIT')}</a>
+                            <a class="btn btn-xs btn-danger js-ajax-delete"
+                               href="{:cmf_plugin_url('TencentApp://AdminApp/delete',['id'=>$vo.app_id])}">{:lang('DELETE')}</a>
                         </td>
                     </tr>
                 </foreach>
@@ -39,6 +40,6 @@
         </div>
     </form>
 </div>
-<include file="public/scripts"/>
+<include file="public@scripts"/>
 </body>
 </html>

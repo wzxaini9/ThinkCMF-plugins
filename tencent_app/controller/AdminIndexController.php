@@ -30,7 +30,6 @@ class AdminIndexController extends PluginAdminBaseController
         $appSettings = cmf_get_option('tencent_app_settings');
 
         $apps = empty($appSettings['apps']) ? [] : $appSettings['apps'];
-
         $this->assign('apps', $apps);
 
         return $this->fetch('/admin_index');
