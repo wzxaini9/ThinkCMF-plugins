@@ -1,0 +1,398 @@
+<br>
+<h3>评论</h3>
+<div class="comment-area" id="comments">
+    <if condition="cmf_is_user_login()">
+        <form class="comment-form" action="{:cmf_plugin_url('Comment://Comment/add')}" method="post">
+            <div class="form-group">
+                <div class="comment-postbox-wraper">
+                    <script type="text/plain" class="comment-postbox" placeholder="Write your comment here" name="content" id="plugin-comment-comment-box"></script>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn pull-right btn-primary js-ajax-submit" id="plugin-comment-comment-box-submit-btn">
+                    <i class="fa fa-comment-o"></i> 发表评论
+                </button>
+            </div>
+            <input type="hidden" name="object_title" value="{$param.object_title}"/>
+            <input type="hidden" name="table_name" value="{$param.table_name}"/>
+            <input type="hidden" name="object_id" value="{$param.object_id}"/>
+            <input type="hidden" name="url" value="{$param.url}"/>
+            <input type="hidden" name="to_user_id" value="0"/>
+            <input type="hidden" name="parent_id" value="0"/>
+            <div class="clearfix"></div>
+        </form>
+        <else />
+        <p style="text-align: center;padding-top: 15px">登录后可发表评论</p>
+    </if>
+
+    <notempty name="user">
+        <script class="comment-tpl" type="text/html">
+            <hr style="margin: 5px 0;">
+            <div class="comment" data-username="{$user.user_nickname|default=''}" data-user_id="{$user.id|default=''}">
+                <div style="float: left;margin-right: 10px;">
+                    <a class="pull-left" href="{:cmf_url('user/index/index',array('id'=>decbin($user['id'])))}" style="margin-right: 10px;">
+                        <img class="media-object avatar" src="{:cmf_url('user/public/avatar',array('id'=>decbin($user['id'])))}" class="headicon"/>
+                    </a>
+                    <div style="line-height: 27px;float: left; padding: 4px;">
+                        <a href="{:cmf_url('user/index/index',array('id'=>decbin($user['id'])))}" style="font-size: 20px;">{$user.user_nickname}</a>:<br>
+                        <span class="time">刚刚</span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="comment-body">
+                    <div class="comment-content">
+                        <span class="content"></span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </script>
+    </notempty>
+
+    <script class="comment-reply-box-tpl" type="text/html">
+        <div class="comment-reply-submit">
+            <div class="comment-reply-box">
+                <input type="text" class="textbox form-control" placeholder="回复">
+            </div>
+            <button class="btn pull-right" onclick="commentSubmit(this);" style="margin-top: 5px;">回复</button>
+        </div>
+    </script>
+
+    <div class="comments">
+        <foreach name="comments" item="vo">
+            <hr style="margin: 5px 0;">
+            <div id="comment{$vo.id}" class="comment" data-id="{$vo.id}" data-user_id="{$vo.user_id}" data-username="{$vo.full_name}">
+                <div style="float: left;margin-right: 10px;">
+                    <a class="pull-left" href="{:cmf_url('user/Index/index',array('id'=>decbin($vo['user_id'])))}" style="margin-right: 10px;">
+                        <img class="media-object avatar" src="{:cmf_url('user/public/avatar',array('id'=>$vo['user_id']))}" class="headicon"/>
+                    </a>
+                    <div style="line-height: 27px;float: left; padding: 4px;">
+                        <a href="{:cmf_url('user/index/index',array('id'=>decbin($vo['user_id'])))}" style="font-size: 20px;">{$vo.full_name}</a>:<br>
+                        <span class="time">{:date('m月d日 H:i',$vo.create_time)}</span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="comment-body">
+                    <div class="comment-content" style="line-height:22px;font-size: 16px;">
+                        <notempty name="vo.to_user_id">
+                            @<a href="{:cmf_url('user/Index/index',array('id'=>decbin($vo['to_user']['id'])))}">{$vo.to_user.user_nickname|default='无名'}</a>
+                        </notempty>
+                        {$vo.content}
+                    </div>
+                    <if condition="cmf_is_user_login()">
+                        <div class="pull-right">
+                            <a onclick="commentReply(this);" href="javascript:;"><i class="fa fa-comment"></i>回复</a>
+<!--                            <a href="{:cmf_url('user/index/index',array('id'=>decbin($vo['user_id'])))}"><i class="fa fa-rmb"></i>打赏TA</a>-->
+                        </div>
+                    </if>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </foreach>
+        <if condition="cmf_is_mobile()">
+            <ul class="pager">
+                {$page|default=''}
+            </ul>
+            <else/>
+            <ul class="pagination">
+                {$page|default=''}
+            </ul>
+        </if>
+    </div>
+</div>
+<script>
+    (function () {
+        var URL = window.UEDITOR_HOME_URL || getUEBasePath();
+        /**
+         * 配置项主体。注意，此处所有涉及到路径的配置别遗漏URL变量。
+         */
+        window.UEDITOR_CONFIG = {
+            //为编辑器实例添加一个路径，这个不能被注释
+            UEDITOR_HOME_URL: GV.WEB_ROOT + 'static/js/ueditor/'
+            // 服务器统一请求接口路径
+            , serverUrl: GV.ROOT + "user/Ueditor/upload"
+            //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
+            , toolbars: [['fullscreen', 'undo', 'redo', '|',
+                'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+                'insertimage', 'emotion', 'insertcode', '|',
+                'searchreplace', 'drafts']
+            ]
+            , initialFrameWidth: '100%'  //初始化编辑器宽度,默认1000
+            , emotionLocalizatio: true //是否开启表情本地化，默认关闭。若要开启请确保emotion文件夹下包含官网提供的images表情文件夹
+            , xssFilterRules: true
+            //input xss过滤
+            , inputXssFilter: true
+            //output xss过滤
+            , outputXssFilter: true
+            // xss过滤白名单 名单来源: https://raw.githubusercontent.com/leizongmin/js-xss/master/lib/default.js
+            , whiteList: {
+                //a: ['target', 'href', 'title', 'class', 'style'],
+                abbr: ['title', 'class', 'style'],
+                address: ['class', 'style', 'id'],
+                area: ['shape', 'coords', 'href', 'alt'],
+                article: [],
+                aside: [],
+                b: ['class', 'style', 'id'],
+                bdi: ['dir'],
+                bdo: ['dir'],
+                big: [],
+                blockquote: ['cite', 'class', 'style', 'id'],
+                br: ['class', 'style', 'id'],
+                caption: ['class', 'style', 'id'],
+                center: [],
+                cite: [],
+                code: ['class', 'style', 'id'],
+                col: ['align', 'valign', 'span', 'width', 'class', 'style', 'id'],
+                colgroup: ['align', 'valign', 'span', 'width', 'class', 'style', 'id'],
+                dd: ['class', 'style', 'id'],
+                del: ['datetime', 'class', 'style', 'id'],
+                details: ['open'],
+                div: ['class', 'style', 'id'],
+                dl: ['class', 'style', 'id'],
+                dt: ['class', 'style', 'id'],
+                em: ['class', 'style', 'id'],
+                footer: [],
+                h1: ['class', 'style', 'id'],
+                h2: ['class', 'style', 'id'],
+                h3: ['class', 'style', 'id'],
+                h4: ['class', 'style', 'id'],
+                h5: ['class', 'style', 'id'],
+                h6: ['class', 'style', 'id'],
+                header: [],
+                hr: ['class', 'style', 'id'],
+                i: ['class', 'style', 'id'],
+                //iframe: ['src', 'width', 'height', 'class', 'id', 'style', 'frameborder', 'name'],
+                img: ['src', 'alt', 'title', 'width', 'height', 'id', '_src', 'loadingclass', '_url', 'data-latex'],
+                ins: ['datetime', 'class', 'style', 'id'],
+                li: ['class', 'style', 'id'],
+                mark: [],
+                nav: [],
+                ol: ['class', 'style', 'id'],
+                p: ['class', 'style', 'id'],
+                pre: ['class', 'style', 'id'],
+                s: [],
+                section: [],
+                small: ['class', 'style', 'id'],
+                source: ['src', 'type'],
+                span: ['class', 'style', 'id'],
+                sub: ['class', 'style', 'id'],
+                sup: ['class', 'style', 'id'],
+                strong: ['class', 'style', 'id'],
+                u: [],
+                ul: ['class', 'style', 'id'],
+            }
+        };
+
+        function getUEBasePath(docUrl, confUrl) {
+
+            return getBasePath(docUrl || self.document.URL || self.location.href, confUrl || getConfigFilePath());
+
+        }
+
+        function getConfigFilePath() {
+
+            var configPath = document.getElementsByTagName('script');
+
+            return configPath[configPath.length - 1].src;
+
+        }
+
+        function getBasePath(docUrl, confUrl) {
+
+            var basePath = confUrl;
+
+
+            if (/^(\/|\\\\)/.test(confUrl)) {
+
+                basePath = /^.+?\w(\/|\\\\)/.exec(docUrl)[0] + confUrl.replace(/^(\/|\\\\)/, '');
+
+            } else if (!/^[a-z]+:/i.test(confUrl)) {
+
+                docUrl = docUrl.split("#")[0].split("?")[0].replace(/[^\\\/]+$/, '');
+
+                basePath = docUrl + "" + confUrl;
+
+            }
+
+            return optimizationPath(basePath);
+
+        }
+
+        function optimizationPath(path) {
+
+            var protocol = /^[a-z]+:\/\//.exec(path)[0],
+                tmp = null,
+                res = [];
+
+            path = path.replace(protocol, "").split("?")[0].split("#")[0];
+
+            path = path.replace(/\\/g, '/').split(/\//);
+
+            path[path.length - 1] = "";
+
+            while (path.length) {
+
+                if ((tmp = path.shift()) === "..") {
+                    res.pop();
+                } else if (tmp !== ".") {
+                    res.push(tmp);
+                }
+            }
+            return protocol + res.join("/");
+        }
+        window.UE = {
+            getUEBasePath: getUEBasePath
+        };
+    })();
+
+    Wind.css('ueditor');
+    Wind.use('ueditor', 'ajaxForm', function () {
+        var editor = new baidu.editor.ui.Editor();
+        editor.render("plugin-comment-comment-box");
+        var $comment_form = $(".comment-area .comment-form");
+        $(".js-ajax-submit", $comment_form).on("click", function (e) {
+            var btn = $(this),
+                form = btn.parents(".comment-form");
+            e.preventDefault();
+
+            var url = btn.data('action') ? btn.data('action') : form.attr('action');
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                type: "POST",
+                beforeSend: function () {
+                    var text = btn.text();
+
+                    //按钮文案、状态修改
+                    btn.text(text + '中...').prop('disabled', true).addClass('disabled');
+                },
+                data: form.serialize(),
+                success: function (data, textStatus, jqXHR) {
+                    var text = btn.text();
+                    //按钮文案、状态修改
+                    btn.removeClass('disabled').text(text.replace('中...', '')).parent().find('span').remove();
+                    btn.removeProp('disabled').removeClass('disabled');
+                    if (data.code == 1) {
+                        $('<span class="tips_success">' + data.msg + '</span>').appendTo(btn.parent()).fadeIn('slow').delay(1000).fadeOut(function () {
+                        });
+                    } else if (data.code == 0) {
+                        $('<span class="tips_error">' + data.msg + '</span>').appendTo(btn.parent()).fadeIn('fast');
+                        btn.removeProp('disabled').removeClass('disabled');
+                    }
+                    if (data.code == 1) {
+                        var $comments = form.siblings(".comments");
+                        var comment_tpl = btn.parents(".comment-area").find(".comment-tpl").html();
+                        var $comment_tpl = $(comment_tpl);
+                        $comment_tpl.attr("data-id", data.data.id);
+                        var $comment_postbox = form.find("[name='content']");
+                        var comment_content = $comment_postbox.val();
+                        $comment_tpl.find(".comment-content .content").html(comment_content);
+                        $comments.prepend($comment_tpl);
+                        editor.setContent('');
+                    }
+                }
+            });
+            return false;
+        });
+    });
+
+    function commentReply(obj) {
+        $(".comments .comment-reply-submit").hide();
+        var $this = $(obj);
+        var $comment_body = $this.parents(".comments > .comment> .comment-body");
+        var $comment = $this.parents(".comment");
+        var commentid = $comment.data("id");
+        var username = $comment.data("username");
+
+        var $commentReplySubmit = $comment_body.find(".comment-reply-submit");
+
+        if ($commentReplySubmit.length) {
+            $commentReplySubmit.show();
+        } else {
+            var comment_reply_box_tpl = $comment_body.parents(".comment-area").find(".comment-reply-box-tpl").html();
+            $commentReplySubmit = $(comment_reply_box_tpl);
+            $comment_body.append($commentReplySubmit);
+        }
+
+        var $replyTextbox = $commentReplySubmit.find(".textbox");
+        $replyTextbox.attr('placeholder', '@' + username);
+        $replyTextbox.focus();
+        $commentReplySubmit.data("replyid", commentid);
+    }
+
+    function commentSubmit(obj) {
+
+        Wind.use('noty', function () {
+
+            var $this = $(obj);
+
+            var $commentReplySubmit = $this.parents(".comment-reply-submit");
+
+            var $replyTextbox = $commentReplySubmit.find(".textbox");
+            var reply_content = $replyTextbox.val();
+
+            if (reply_content == '') {
+                $replyTextbox.focus();
+                return;
+            }
+
+            var $comment_body = $this.parents(".comments > .comment> .comment-body");
+
+            var comment_tpl = $comment_body.parents(".comment-area").find(".comment-tpl").html();
+
+            var $comment_tpl = $(comment_tpl);
+
+            var replyid = $commentReplySubmit.data('replyid');
+
+            var $comment = $(".comments [data-id='" + replyid + "']");
+
+            var username = $comment.data("username");
+
+            var comment_content = "@" + username + ":" + reply_content;
+            $comment_tpl.find(".comment-content .content").html(comment_content);
+            $('.comment-area .comments').prepend($comment_tpl);
+
+            var $comment_form = $this.parents(".comment-area").find(".comment-form");
+
+            var comment_url = $comment_form.attr("action");
+
+            var table_name = $comment_form.find("[name='table_name']").val();
+            var object_title = $comment_form.find("[name='object_title']").val();
+            var object_id = $comment_form.find("[name='object_id']").val();
+            var object_url = $comment_form.find("[name='url']").val();
+
+            var user_id = $comment.data("user_id");
+
+            $.post(comment_url,
+                {
+                    object_title: object_title,
+                    table_name: table_name,
+                    object_id: object_id,
+                    to_user_id: user_id,
+                    parent_id: replyid,
+                    content: reply_content,
+                    url: object_url
+                }, function (data) {
+                    if (data.code == 0) {
+                        noty({
+                            text: data.msg,
+                            type: 'error',
+                            layout: 'center'
+                        });
+                        $comment_tpl.remove();
+                    }
+
+                    if (data.code == 1) {
+                        $comment_tpl.attr("data-id", data.data.id);
+                        $replyTextbox.val('');
+                    }
+
+                }, 'json');
+
+            $commentReplySubmit.hide();
+        });
+
+    }
+
+</script>
+

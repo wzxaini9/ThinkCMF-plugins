@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+    <include file="public@head"/>
+</head>
+<body>
+<block name="main">
+    <div class="wrap js-check-wrap">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="javascript:;">所有评论</a>
+            </li>
+        </ul>
+        <table class="table table-hover table-bordered margin-top-20">
+            <thead>
+            <tr>
+                <th width="60">ID</th>
+                <th width="200">{:lang('NAME')}</th>
+                <th>{:lang('CONTENT')}</th>
+                <th width="160">评论时间</th>
+                <th width="60">{:lang('STATUS')}</th>
+                <th width="110">{:lang('ACTIONS')}</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <php>
+                $user_status=["0"=>"未审核","1"=>"已审核"];
+            </php>
+            <foreach name="comments" item="vo">
+                <tr>
+                    <td>
+                        {$vo.id}
+                    </td>
+                    <td>{$vo.full_name}</td>
+                    <td>
+                        {$vo.content}
+                    </td>
+                    <td>{:date('Y-m-d H:i:s',$vo['create_time'])}</td>
+                    <td>{$user_status[$vo['status']]}</td>
+                    <td>
+                        <a class="btn btn-xs btn-primary" href="{:cmf_url('portal/Article/index',array('id'=>$vo.object_id))}/#comment{$vo.id}"
+                           title="查看" data-toggle="tooltip">
+                            <i class="fa fa-eye fa-fw"></i>
+                        </a>
+                        <if condition="$vo['status']">
+                            <a class="btn btn-xs btn-success js-ajax-dialog-btn"
+                               href="javascript:"
+                               data-href="{:cmf_plugin_url('Comment://AdminIndex/ban',array('id'=>$vo['id']))}"
+                               data-msg="确定要加入未审核吗"
+                               title="审核" data-toggle="tooltip">
+                                <i class="fa fa-toggle-on fa-fw"></i>
+                            </a>
+                            <else/>
+                            <a class="btn btn-xs btn-warning js-ajax-dialog-btn"
+                               href="javascript:"
+                               data-href="{:cmf_plugin_url('Comment://AdminIndex/cancelban',array('id'=>$vo['id']))}"
+                               data-msg="确定要审核这条信息吗"
+                               title="审核" data-toggle="tooltip">
+                                <i class="fa fa-toggle-off fa-fw"></i>
+                            </a>
+                        </if>
+                        <a class="btn btn-xs btn-danger js-ajax-delete"
+                           href="javascript:"
+                           data-href="{:cmf_plugin_url('Comment://AdminIndex/delete',array('id'=>$vo['id']))}" title="删除" data-toggle="tooltip">
+                            <i class="fa fa-trash fa-fw"></i>
+                        </a>
+                    </td>
+                </tr>
+            </foreach>
+
+            </tbody>
+        </table>
+        <div class="pagination">{$page}</div>
+    </div>
+</block>
+
+<include file="public@scripts"/>
+</body>
+</html>

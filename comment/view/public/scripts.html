@@ -1,0 +1,24 @@
+<script type="text/javascript">
+    //全局变量
+    var GV = {
+        ROOT: "__ROOT__/",
+        WEB_ROOT: "__WEB_ROOT__/",
+        JS_ROOT: "static/js/",
+        lang: function (langKey, params) {
+            var lang = {
+                LOGIN_INVALID_TIPS: "{:lang('LOGIN_INVALID_TIPS')}",
+                'Please select at least one': "{:lang('Please select at least one')}",
+                Close: "{:lang('CLOSE')}",
+                'You sure you want to delete it?': "{:lang('You sure you want to delete it?')}",
+                'OK': "{:lang('OK')}",
+                'Are you sure you want to do this?': "{:lang('Are you sure you want to do this?')}"
+            };
+            return typeof lang[langKey] === 'undefined' ? langKey : lang[langKey];
+        }
+    };
+</script>
+<script src="__STATIC__/js/jquery-3.6.4.min.js"></script>
+<script src="__STATIC__/js/wind.js"></script>
+<script src="__STATIC__/js/admin.js"></script>
+<script src="__ADMIN_TMPL__/public/assets/js/popper.min.js"></script>
+<script src="__ADMIN_TMPL__/public/assets/js/bootstrap.min.js"></script>
