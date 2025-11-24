@@ -12,6 +12,7 @@ use cmf\controller\PluginAdminBaseController;
 
 class AdminIndexController extends PluginAdminBaseController
 {
+    private $cacheTime = 3600;
 
     /**
      * 获取新闻
@@ -38,7 +39,8 @@ class AdminIndexController extends PluginAdminBaseController
             $channelRes = json_decode($channelRes, true);
             if ($channelRes && $channelRes['code'] == 1) {
                 $channel = $channelRes['data'];
-                cache('channel_'.$type, json_encode($channel), 3600);
+                $channel['expired_time'] = time() + $this->cacheTime;
+                cache('channel_'.$type, json_encode($channel, JSON_UNESCAPED_UNICODE), $this->cacheTime);
             }
         } else {
             $channel = json_decode($channel, true);

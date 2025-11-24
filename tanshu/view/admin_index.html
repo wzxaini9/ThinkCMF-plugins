@@ -31,7 +31,8 @@
                         <option value="{:$type}" <if condition="$type eq $data['channel']">selected</if>>{:$type}</option>
                     </foreach>
                 </select>
-                <input type="submit" class="btn btn-primary" value="拉取"/>
+                <input type="submit" class="btn btn-primary" value="获取"/>
+                缓存到期时间：{:date('Y-m-d H:i:s', $data['expired_time'])}
                 </span>
             </div>
         </div>
