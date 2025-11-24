@@ -16,7 +16,12 @@
             <div class="mb10">
                 选择日期：
                 <input type="text" class="form-control js-bootstrap-date" name="time" value="{$time}" autocomplete="off">
+                查找用户：
+                <input type="text" class="form-control" name="user_login" value="{:input('request.user_login/s','')}" placeholder="">
+                指定IP：
+                <input type="text" class="form-control" name="ip" value="{:input('request.ip/s','')}" placeholder="">
                 <input type="submit" class="btn btn-primary" value="搜索"/>
+                <a class="btn btn-danger" href="{:cmf_plugin_url('AdminJournal://AdminIndex/index')}">{:lang('Clear')}</a>
                 <if condition="$num neq 0">
                     共有 {$num} 条相关记录
                 </if>

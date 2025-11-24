@@ -30,6 +30,8 @@ class AdminIndexController extends PluginAdminBaseController
     {
         $data = $this->request->param();
         $date = isset($data['time']) ? $data['time'] : date('Y-m-d');
+        $userLogin = $data['user_login'] ?? '';
+        $ip = $data['ip'] ?? '';
         $filename = CMF_DATA . 'journal/' . $date . '.log';
         $logs = [];
         if (file_exists_case($filename)) {
@@ -40,7 +42,14 @@ class AdminIndexController extends PluginAdminBaseController
             fclose($file_hwnd);
             foreach ($content as $k => $v) {
                 if ($v) {
-                    $logs[$k] = json_decode($v, true);
+                    $arr = json_decode($v, true);
+                    if($userLogin && $arr[1] != $userLogin){
+                        continue;
+                    }
+                    if($ip && $arr[3] != $ip){
+                        continue;
+                    }
+                    $logs[$k] =$arr;
                 }
             }
         } else {
