@@ -44,23 +44,17 @@ class WeiboPlugin extends Plugin
     public function portalAdminAfterSaveArticle($param)
     {
         $article = $param['article'];
-        $id = $article['id'];
-        $excerpt = '【' . $article['post_title'] . '】' . $article['post_excerpt'];
-        $config = $this->getConfig();
-        if (!empty($config['access_token']) && $config['synchronize']) {
-            $weibo = new SaeTClientV2($config['app_key'], $config['app_secret'], $config['access_token']);
-            $msg = mb_substr($excerpt, 0, $config['content_length']) . cmf_url('portal/Article/index', ['id' => $id], false, true);
-            trace($msg, 'log');
-            $response = $weibo->share($msg,false,get_client_ip());
-            trace($response, 'info');
+        if(!empty($article['post_status'])) {
+            $id = $article['id'];
+            $excerpt = '【' . $article['post_title'] . '】' . $article['post_excerpt'];
+            $config = $this->getConfig();
+            if (!empty($config['access_token']) && $config['synchronize']) {
+                $weibo = new SaeTClientV2($config['app_key'], $config['app_secret'], $config['access_token']);
+                $msg = mb_substr($excerpt, 0, $config['content_length']) . cmf_url('portal/Article/index', ['id' => $id], false, true);
+                trace($msg, 'log');
+                $response = $weibo->share($msg, false, get_client_ip());
+                trace($response, 'info');
+            }
         }
-    }
-
-    //实现portal_admin_article_edit_view_right_sidebar钩子方法
-    public function portalAdminArticleEditViewRightSidebar()
-    {
-        $config = $this->getConfig();
-        $this->assign($config);
-        echo $this->fetch('widget');
     }
 }
